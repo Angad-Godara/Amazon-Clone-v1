@@ -3,6 +3,9 @@
     height: 70px;
     background-color: #131921;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo{

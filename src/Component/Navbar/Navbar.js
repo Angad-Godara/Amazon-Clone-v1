@@ -2,8 +2,11 @@ import React from 'react'
 import './Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useStateValue } from '../../State/StateProvider'
 
 function Navbar() {
+    const [{ basket }, dispatch] = useStateValue();
+
     return (
         <div className='nav__bar'>
             <img className='logo' src='https://pngimg.com/uploads/amazon/amazon_PNG11.png' alt='logo' />
@@ -38,7 +41,7 @@ function Navbar() {
                 </div>
                 <div className='cart'>
                     <ShoppingCartIcon />
-                    <span className='items'>6</span>
+                    <span className='items'>{basket.length}</span>
                 </div>
             </div>
         </div>

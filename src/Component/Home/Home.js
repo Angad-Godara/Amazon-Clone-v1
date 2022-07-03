@@ -6,8 +6,8 @@ import './Home.css'
 
 function Home() {
 
-    const [state, dispatch] = useStateValue()
-    console.log(state.products)
+    const [state, dispatch] = useStateValue();
+
     return (
         <div className='home'>
             <div className='home__container'>
@@ -19,7 +19,7 @@ function Home() {
                             if (idx >= 2) {
                                 return
                             }
-                            return <Product id={item.id} title={item.title} price={item.price} image={item.image} />
+                            return <Product key={idx + item.id} item={item} />
                         })
                     }
                 </div>
@@ -29,7 +29,7 @@ function Home() {
                             if (idx < 2 || idx > 4) {
                                 return
                             }
-                            return <Product id={item.id} title={item.title} price={item.price} image={item.image} />
+                            return <Product key={idx + item.id} item={item} />
                         })
                     }
                 </div>
@@ -39,7 +39,7 @@ function Home() {
                             if (idx < 5) {
                                 return
                             }
-                            return <Product id={item.id} title={item.title} price={item.price} image={item.image} />
+                            return <Product key={idx + item.id} item={item} />
                         })
                     }
                 </div>
