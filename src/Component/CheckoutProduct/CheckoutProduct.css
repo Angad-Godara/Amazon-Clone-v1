@@ -1,0 +1,31 @@
+.checkoutproduct{
+    display: flex;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    max-height: 400px;
+    min-width: 100px;
+    align-items: center;
+    border-bottom: rgb(215, 206, 206) 1px solid;
+}
+
+.checkoutproduct__info{
+    margin-left: 25px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.checkoutproduct__image{
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.remove__item{
+    background: #d4e6e3;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 10px;
+    margin-top: 7px;
+    border-color: #47dbc3 #5fb5da #482fc1;
+    color: #111;
+}

@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     max-width: 1500px;
+  background-color: rgb(234, 237, 237);
 }
 
 .home__row{
