@@ -10,9 +10,16 @@
 }
 
 .checkoutproduct__info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-left: 25px;
     font-weight: 600;
     font-size: 13px;
+}
+
+.checkoutproduct__info > p {
+    margin: 6px;
 }
 
 .checkoutproduct__image{
@@ -22,9 +29,9 @@
 
 .remove__item{
     background: #d4e6e3;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid;
-    padding: 10px;
+    padding: 6px;
     margin-top: 7px;
     border-color: #47dbc3 #5fb5da #482fc1;
     color: #111;

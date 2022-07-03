@@ -26,9 +26,20 @@
 }
 
 .add__to__cart{
-    background: #f0c14b;
-    border: 1px solid;
     margin-top: 10px;
-    border-color: #a88734 #9c7e31 #846a29;
+    background: #ffea2a;
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 10px;
+    margin-top: 20px;
+    border-color: #ffce51 #eabf53 #fec73b;
     color: #111;
+}
+
+.add__to__cart:hover{
+    box-shadow: #ffce51 2px 2px 2px 2px;
+}
+
+.add__to__cart:active{
+    box-shadow: none;
 }
