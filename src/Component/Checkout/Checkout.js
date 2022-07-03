@@ -2,6 +2,8 @@ import React from 'react'
 import { useStateValue } from '../../State/StateProvider'
 import CheckoutProduct from '../CheckoutProduct/CheckoutProduct'
 import './Checkout.css'
+import { getBasketTotal } from '../../State/Reducers/reducer'
+import { Link } from 'react-router-dom'
 
 function Checkout() {
 
@@ -28,11 +30,11 @@ function Checkout() {
             </div>
             <div className='right'>
                 <div className='subtotal'>
-                    <div className='subtotal__amount'>Subtotal(x items): <strong>INR 2313</strong></div>
+                    <div className='subtotal__amount'>Subtotal ({basket.length} items): <strong>INR {getBasketTotal(basket)}</strong></div>
                     <div className='subtotal__checkbox'>
                         <input type='checkbox' />This order contains a gift
                     </div>
-                    <button>Proceed to Checkout</button>
+                    <Link to='/payment'><button className='procced__to__checkout__button'>Proceed to Checkout</button></Link>
                 </div>
             </div>
         </div>

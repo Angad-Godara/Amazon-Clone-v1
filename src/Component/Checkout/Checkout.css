@@ -30,7 +30,7 @@
     align-items: center;
 }
 
-.subtotal > button{
+.procced__to__checkout__button{
     background: #ffea2a;
     border-radius: 20px;
     width: 100%;
