@@ -3,6 +3,7 @@ import { useStateValue } from '../../State/StateProvider'
 import './Payment.css'
 import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import { getBasketTotal } from '../../State/Reducers/reducer';
+import { CardElement } from '@stripe/react-stripe-js';
 
 function Payment() {
 
@@ -42,6 +43,7 @@ function Payment() {
                 <div className='delivery__address'>
                     <form>
                         <div className='payment__details'>
+                            <CardElement />
                             <h4>Order Total: INR {getBasketTotal(basket)}</h4>
                             <button className='buy__now'>Buy now</button>
                         </div>

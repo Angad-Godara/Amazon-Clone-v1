@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 function Checkout() {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
     return (
         <div className='checkout'>
@@ -15,7 +15,7 @@ function Checkout() {
                 <img className='advertisement' src='https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg'
                     alt='adertisement' />
                 <div className='checkout__user'>
-                    <h3>Hello Guest</h3>
+                    <h3>Hello {user ? user?._delegate.email : 'Guest'}</h3>
                     <h2>Your Shopping Cart</h2>
                 </div>
 

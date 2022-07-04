@@ -44,7 +44,8 @@
 }
 
 .payment__details{
-    margin: 20px;
     display: flex;
+    width: 30vw;
+    min-width: 400px;
     flex-direction: column;
 }

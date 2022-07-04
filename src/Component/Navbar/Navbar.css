@@ -70,3 +70,12 @@
 .items{
     margin-left: 3px;
 }
+
+.links {
+    text-decoration: none;
+    color: inherit;
+}
+
+.signout{
+    cursor: pointer;
+}

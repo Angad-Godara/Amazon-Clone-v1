@@ -6,9 +6,16 @@ import { useStateValue } from '../../State/StateProvider';
 import {
     Link
 } from "react-router-dom";
+import { auth } from '../Firebase/Firebase';
 
 function Navbar() {
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const handleSignOut = (e) => {
+        e.preventDefault();
+        auth
+            .signOut()
+    }
 
     return (
         <div className='nav__bar'>
@@ -22,10 +29,13 @@ function Navbar() {
             <div className='option__container'>
                 <div className='nav__options'>
                     <div className='upper'>
-                        <span>Hello Guest</span>
+                        <span>Hello {user ? user?._delegate.email : 'Guest'}</span>
                     </div>
                     <div className='lower'>
-                        <span>Sign IN</span>
+                        {user ?
+                            <span className='signout' onClick={handleSignOut}>Sign Out</span> :
+                            <Link className='links' to='/signIn'><span>Sign IN</span></Link>
+                        }
                     </div>
                 </div>
                 <div className='nav__options'>
