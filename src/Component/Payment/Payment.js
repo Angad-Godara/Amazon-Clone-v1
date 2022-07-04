@@ -26,7 +26,7 @@ function Payment() {
     useEffect(() => {
         setProgress(10);
         const getClientSecret = async () => {
-            const url = "http://localhost:5000/processing";
+            const url = "https://amazonerver.herokuapp.com/processing";
             var res = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },

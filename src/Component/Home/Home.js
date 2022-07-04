@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useStateValue } from '../../State/StateProvider'
+import { LoaderContext } from '../../TopBarContext/loaderContext';
 import Product from '../Product/Product'
 import './Home.css'
 
 function Home() {
 
     const [state, dispatch] = useStateValue();
+
+    const { setProgress } = useContext(LoaderContext);
+    useEffect(() => {
+        setProgress(100)
+    }, [])
 
     return (
         <div className='home'>
