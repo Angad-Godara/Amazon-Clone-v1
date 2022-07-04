@@ -14,7 +14,6 @@ function Orders() {
     const { setProgress } = useContext(LoaderContext)
 
     useEffect(() => {
-        console.log(user);
         setProgress(20)
 
         if (user) {

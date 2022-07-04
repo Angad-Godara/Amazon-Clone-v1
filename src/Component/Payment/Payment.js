@@ -91,7 +91,7 @@ function Payment() {
 
                     navigate('/orders')
                 }
-            }).catch(err => console.warn(err))
+            }).catch(err => { alert("Payment Failed, Kindly try again"); setprocessing(false); console.warn(err) })
         setProgress(100);
     }
 
@@ -101,7 +101,7 @@ function Payment() {
     }
 
     return (
-        <>{!user ?
+        <>{(!user) ?
             <div style={{ height: `calc(100vh - 130px)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <h1>Kindly <Link style={{ color: 'inherit' }} to='/Signin'>Sign IN</Link> to place orders</h1>
             </div>

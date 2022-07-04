@@ -28,11 +28,17 @@
 }
 
 .remove__item{
-    background: #d4e6e3;
+    background: #c7fff7;
     border-radius: 10px;
     border: 1px solid;
     padding: 6px;
     margin-top: 7px;
     border-color: #47dbc3 #5fb5da #482fc1;
     color: #111;
+}
+
+.remove__item:hover{
+    background: #73fae6;
+    box-shadow: 1px 1px 1px 1px  #73fae6;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
 }

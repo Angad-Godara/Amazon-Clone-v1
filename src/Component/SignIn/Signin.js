@@ -35,7 +35,10 @@ function Signin() {
                     navigate('/')
                 }
             })
-            .catch(err => console.warn(err))
+            .catch(err => {
+                alert("Please Enter Valid Credentials");
+                // console.warn(err) 
+            })
         setProgress(100)
     }
 
@@ -50,7 +53,10 @@ function Signin() {
                     navigate('/')
                 }
             })
-            .catch(err => console.warn(err))
+            .catch(err => {
+                alert("Please Enter Valid Credentials");
+                // console.warn(err) 
+            })
         setProgress(100);
     }
 

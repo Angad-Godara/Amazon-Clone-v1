@@ -31,7 +31,7 @@
 }
 
 .buy__now{
-    background: #f7e11f;
+    background: #f6cc35;
     border-radius: 10px;
     padding: 10px;
     border: 1px solid;
@@ -40,11 +40,18 @@
 }
 
 .buy__now:hover{
-    background: #f2ff03;
+    background: #ffea2a ;
+    transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: #fec73b 2px 2px 2px 2px;
 }
 
 .buy__now:disabled{
-    background: #dee198;
+    background: #e4e95f;
+}
+
+.buy__now:disabled:hover{
+    background: #e4e95f;
+    box-shadow: none;
 }
 
 .payment__details{
