@@ -125,6 +125,7 @@ function Payment() {
                             <h4>Order Total: INR {getBasketTotal(basket)}</h4>
                             <button disabled={processing || disabled || succeeded || (basket.length === 0)} onClick={handlepayment} className='buy__now'>{processing ? "Processing" : "Pay now"}</button>
                         </div>
+                        <div>{error ? error.message : ""}</div>
                     </form>
                 </div>
             </div>
