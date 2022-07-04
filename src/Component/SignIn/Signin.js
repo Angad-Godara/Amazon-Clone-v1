@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useStateValue } from '../../State/StateProvider'
+import { LoaderContext } from '../../TopBarContext/loaderContext'
 import { auth } from '../Firebase/Firebase'
 import './Signin.css'
 
@@ -10,16 +11,23 @@ function Signin() {
 
     const navigate = useNavigate();
 
+    const { setProgress } = useContext(LoaderContext);
+
     const [{ user }, dispatch] = useStateValue();
 
     useEffect(() => {
+        setProgress(10);
         if (user) {
             navigate('/')
+            setProgress(50);
         }
+        setProgress(100)
     }, [])
 
     const handleSignin = (e) => {
+        setProgress(20)
         e.preventDefault();
+        setProgress(50)
         auth
             .signInWithEmailAndPassword(email, password)
             .then(auth => {
@@ -28,10 +36,13 @@ function Signin() {
                 }
             })
             .catch(err => console.warn(err))
+        setProgress(100)
     }
 
     const handleRegister = (e) => {
+        setProgress(20);
         e.preventDefault();
+        setProgress(50);
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(auth => {
@@ -40,6 +51,7 @@ function Signin() {
                 }
             })
             .catch(err => console.warn(err))
+        setProgress(100);
     }
 
 

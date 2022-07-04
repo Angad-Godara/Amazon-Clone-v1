@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useStateValue } from '../../State/StateProvider'
 import CheckoutProduct from '../CheckoutProduct/CheckoutProduct'
 import './Checkout.css'
 import { getBasketTotal } from '../../State/Reducers/reducer'
 import { Link } from 'react-router-dom'
+import { LoaderContext } from '../../TopBarContext/loaderContext'
 
 function Checkout() {
 
     const [{ basket, user }, dispatch] = useStateValue();
+
+    const { setProgress } = useContext(LoaderContext)
+
+    useEffect(() => {
+        setProgress(100)
+    }, [])
 
     return (
         <div className='checkout'>

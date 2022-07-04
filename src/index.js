@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './State/StateProvider';
+import LoaderState from './TopBarContext/loaderContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <StateProvider>
-      <App />
+      <LoaderState>
+        <App />
+      </LoaderState>
     </StateProvider>
   </React.StrictMode>
 );

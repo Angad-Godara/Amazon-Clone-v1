@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useStateValue } from '../../State/StateProvider'
 import { db } from '../Firebase/Firebase'
 import Order from './innercomponent/Order'
 import './Orders.css'
+import { LoaderContext } from '../../TopBarContext/loaderContext'
+import { Link } from 'react-router-dom'
 
 function Orders() {
 
     const [Orders, setOrders] = useState([])
     const [{ user }, dispatch] = useStateValue();
 
+    const { setProgress } = useContext(LoaderContext)
+
     useEffect(() => {
+        console.log(user);
+        setProgress(20)
+
         if (user) {
             db
                 .collection('users')
@@ -22,22 +29,32 @@ function Orders() {
                             data: order.data()
                         })))
                 })
+            setProgress(70)
         } else {
             setOrders([])
         }
+        setProgress(100)
 
     }, [user])
 
-    console.log(Orders)
     return (
         <div className='orders'>
-            <h1>Your Orders</h1>
-            {
-                Orders.map((order, idx) => {
-                    return (
-                        <Order key={idx} order={order} />
-                    )
-                })
+            {!user
+                ?
+                <div style={{ height: `calc(100vh - 130px)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <h1>Kindly <Link style={{ color: 'inherit' }} to='/Signin'>Sign IN</Link> to see your orders</h1>
+                </div>
+                :
+                <>
+                    <h1>Your Orders</h1>
+                    {
+                        Orders.map((order, idx) => {
+                            return (
+                                <Order key={idx} order={order} />
+                            )
+                        })
+                    }
+                </>
             }
         </div>
     )

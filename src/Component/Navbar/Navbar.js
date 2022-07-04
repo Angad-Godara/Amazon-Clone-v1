@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -7,14 +7,19 @@ import {
     Link
 } from "react-router-dom";
 import { auth } from '../Firebase/Firebase';
+import { LoaderContext } from '../../TopBarContext/loaderContext'
 
 function Navbar() {
     const [{ basket, user }, dispatch] = useStateValue();
 
+    const { setProgress } = useContext(LoaderContext)
+
     const handleSignOut = (e) => {
+        setProgress(50)
         e.preventDefault();
         auth
             .signOut()
+        setProgress(100)
     }
 
     return (

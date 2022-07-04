@@ -11,10 +11,12 @@ import Payment from './Component/Payment/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Signin from './Component/SignIn/Signin';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { auth } from './Component/Firebase/Firebase';
 import { useStateValue } from './State/StateProvider';
 import Orders from './Component/Orders/Orders';
+import LoadingBar from 'react-top-loading-bar'
+import { LoaderContext } from './TopBarContext/loaderContext';
 
 function App() {
 
@@ -22,9 +24,11 @@ function App() {
 
   const [{ }, dispatch] = useStateValue();
 
-  useEffect(() => {
+  const { progress, setProgress } = useContext(LoaderContext)
 
+  useEffect(() => {
     auth.onAuthStateChanged(authuser => {
+
 
       if (authuser) {
         dispatch({
@@ -40,12 +44,17 @@ function App() {
       }
 
     })
+    setProgress(100)
 
   }, [])
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar /><LoadingBar
+        color='#f5bf42'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signIn" element={<Signin />} />
