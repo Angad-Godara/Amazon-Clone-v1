@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useStateValue } from '../../State/StateProvider'
 import { auth } from '../Firebase/Firebase'
 import './Signin.css'
 
 function Signin() {
-
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
 
     const navigate = useNavigate();
+
+    const [{ user }, dispatch] = useStateValue();
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [])
 
     const handleSignin = (e) => {
         e.preventDefault();
@@ -19,7 +27,7 @@ function Signin() {
                     navigate('/')
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => console.warn(err))
     }
 
     const handleRegister = (e) => {
@@ -31,7 +39,7 @@ function Signin() {
                     navigate('/')
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => console.warn(err))
     }
 
 
@@ -50,7 +58,7 @@ function Signin() {
                     <button className='signin__button' type='submit'>Sign In</button>
                 </form>
                 <p className='signin__tc'>By signing-in you agree to the AMAZON CLONE Conditions of Use & Sale. Please see out Privacy Notice, our Cookies Notice and our Intereset-Based Ads Notice.</p>
-                <button onClick={() => handleRegister} className='signin__button'> Create an Amazon Account</button>
+                <button onClick={handleRegister} className='signin__button'> Create an Amazon Account</button>
             </div>
         </div>
     )
