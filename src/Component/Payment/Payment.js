@@ -1,13 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStateValue } from '../../State/StateProvider'
 import './Payment.css'
 import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import { getBasketTotal } from '../../State/Reducers/reducer';
-import { CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../Firebase/Firebase';
 
 function Payment() {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const navigate = useNavigate();
+
+    const [clientSecret, setclientSecret] = useState(null)
+    const [processing, setprocessing] = useState(false);
+    const [disabled, setdisabled] = useState(true);
+    const [error, seterror] = useState(null)
+    const [succeeded, setsucceeded] = useState(false)
+
+    useEffect(() => {
+        const getClientSecret = async () => {
+            const url = "http://localhost:5000/processing";
+            var res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    total: getBasketTotal(basket) * 100
+                })
+            })
+
+            res = await res.json();
+
+            if (res.client_secret) {
+                setclientSecret(res.client_secret);
+            }
+        }
+
+        getClientSecret();
+    }, [basket])
+
+    // console.log(clientSecret)
+
+    const stripe = useStripe();
+    const elements = useElements();
+
+    const handlepayment = async (e) => {
+        e.preventDefault();
+
+        setprocessing(true)
+
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)
+            }
+        })
+            .then(({ paymentIntent }) => {
+                if (paymentIntent.status === 'succeeded') {
+
+                    setprocessing(false);
+                    setsucceeded(true);
+
+                    db
+                        .collection('users')
+                        .doc(user?.uid)
+                        .collection('orders')
+                        .doc(paymentIntent.id)
+                        .set({
+                            basket: basket,
+                            amount: paymentIntent.amount,
+                            created: paymentIntent.created
+                            // this will give us the time stamp when the order was created
+                        })
+
+                    dispatch({
+                        type: 'EMPTY_BASKET'
+                    })
+
+                    navigate('/')
+                }
+            }).catch(err => console.warn(err))
+    }
+
+    const handleCardInput = (e) => {
+        setdisabled(e.empty ? true : false)
+        seterror(e.error ? e.error : null)
+    }
 
     return (
         <div className='payment'>
@@ -43,9 +121,9 @@ function Payment() {
                 <div className='delivery__address'>
                     <form>
                         <div className='payment__details'>
-                            <CardElement />
+                            <CardElement onChange={handleCardInput} />
                             <h4>Order Total: INR {getBasketTotal(basket)}</h4>
-                            <button className='buy__now'>Buy now</button>
+                            <button disabled={processing || disabled || succeeded || (basket.length === 0)} onClick={handlepayment} className='buy__now'>{processing ? "Processing" : "Pay now"}</button>
                         </div>
                     </form>
                 </div>

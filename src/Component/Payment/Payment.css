@@ -43,6 +43,10 @@
     background: #f2ff03;
 }
 
+.buy__now:disabled{
+    background: #dee198;
+}
+
 .payment__details{
     display: flex;
     width: 30vw;
