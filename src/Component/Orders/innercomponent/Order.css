@@ -1,0 +1,25 @@
+.order{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(222, 242, 222);
+    padding: 20px;
+    overflow-x: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.heading{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.order__details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order__id{
+    font-size: small;
+}

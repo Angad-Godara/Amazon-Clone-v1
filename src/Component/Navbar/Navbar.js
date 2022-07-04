@@ -43,7 +43,7 @@ function Navbar() {
                         <span>Returns</span>
                     </div>
                     <div className='lower'>
-                        <span>& Orders</span>
+                        <Link className='links' to='/orders'><span>& Orders</span></Link>
                     </div>
                 </div>
                 <div className='nav__options'>

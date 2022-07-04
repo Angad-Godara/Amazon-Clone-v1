@@ -14,6 +14,7 @@ import Signin from './Component/SignIn/Signin';
 import { useEffect } from 'react';
 import { auth } from './Component/Firebase/Firebase';
 import { useStateValue } from './State/StateProvider';
+import Orders from './Component/Orders/Orders';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signIn" element={<Signin />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/payment" element={
           <Elements stripe={stripePromise}>
             <Payment />
