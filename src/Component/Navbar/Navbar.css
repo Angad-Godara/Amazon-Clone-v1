@@ -22,6 +22,14 @@
     align-items: center;
 }
 
+.nav__search:hover{
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1) 700ms;
+    box-shadow:#cd9042 2px 2px 2px 2px ;
+    border-radius: 9px;
+    background-color: #dfa963;
+    padding: 2px;
+}
+
 .search__input{
     width: 100%;
     padding: 7px;
@@ -32,7 +40,12 @@
 .search__icon{
     padding: 5px;
     height: 23px;
-    background-color: #cd9042;
+    background-color: #ecbf4c;
+    border: 1px orange;
+}
+
+.search__icon:hover{
+    background-color: #f39d46f4;
 }
 
 .nav__options{

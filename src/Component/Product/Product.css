@@ -10,6 +10,7 @@
     min-width: 100px;
     background-color: white;
     z-index: 22;
+    border-radius: 7px;
 }
 
 .product__info{
