@@ -26,7 +26,7 @@ function Payment() {
     useEffect(() => {
         setProgress(10);
         const getClientSecret = async () => {
-            const url = "https://amazonerver.herokuapp.com/processing";
+            const url = "https://famous-sheath-dress-newt.cyclic.app/processing";
             var res = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
